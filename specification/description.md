@@ -41,10 +41,10 @@ Time when task was created
 
 - **status**<br>
 Task status can be:<br>
-*active* - task placed in the job queue or processing by worker<br>
-*wait* - task requires data from another node and still waiting for<br>
-*fail* - task failed<br>
-*complete* - task was successfully completed
+*active* - Task placed in the job queue or processing by worker<br>
+*wait* - Task requires data from another node and still waiting for<br>
+*fail* - Task failed<br>
+*complete* - Task was successfully completed
 
 - **params**<br>
 Task parameters, which needed for perform the task
@@ -53,7 +53,7 @@ Task parameters, which needed for perform the task
 Arbitrary data, which can be provided for workers
 
 #### Notification
-
+Messages with this type will sent to the clients(through the notifications queue) as a response for their requests.
 JSON structure placed in [json/notification.json](json/notification.json)
 
 ##### The notification object fields:
@@ -63,11 +63,28 @@ Client request ID
 
 - **status**<br>
 Notification status can be:<br>
-*success* - request was handled and result is ready<br>
-*fail* - request failed
+*success* - Request was handled and result is ready<br>
+*fail* - Request failed
 
 - **message**<br>
 Message with any details
 
 - **data**<br>
 Object with additional data
+
+#### Result
+Messages with this type describes result of worker's job
+JSON structure placed in [json/notification.json](json/result.json)
+
+##### The result object fields:
+
+- **taskId**<br>
+ID of the handled task
+
+- **jobStatus**<br>
+Status of worker's job:
+*done* - Task was completed correctly
+*fail* - Task failed
+
+- **data**<br>
+Additional data
