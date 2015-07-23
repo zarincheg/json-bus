@@ -1,0 +1,7 @@
+{
+  "id": "string",
+  "clientId": "string",
+  "subject": "string",
+  "params": "object",
+  "data": "object|string|array"
+}
