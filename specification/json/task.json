@@ -1,0 +1,8 @@
+{
+  "id": "",
+  "requestId": "",
+  "createTime": "",
+  "status": "enum[active|wait|fail|complete]",
+  "params": "",
+  "data": ""
+}
