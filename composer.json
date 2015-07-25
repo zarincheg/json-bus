@@ -1,0 +1,27 @@
+{
+    "name": "zarincheg/pipeline-protocol",
+    "description": "Data Processing Framework protocol implementation",
+    "minimum-stability": "dev",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Kirill Zorin",
+            "email": "zarin@libdev.ru"
+        }
+    ],
+    "require": {
+        "justinrainbow/json-schema": "1.4.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.7.*"
+    },
+    "autoload": {
+        "psr-4": {"Messages\\": "src/Messages"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Tests\\": "tests/"}
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}

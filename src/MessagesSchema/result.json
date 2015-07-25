@@ -1,0 +1,16 @@
+{
+    "title": "Result message schema",
+    "type": "object",
+    "properties": {
+        "taskId": {
+            "type": "string"
+        },
+        "jobStatus": {
+            "enum": ["done", "fail"]
+        },
+        "data": {
+            "type": "any"
+        }
+    },
+    "required": ["taskId", "jobStatus"]
+}

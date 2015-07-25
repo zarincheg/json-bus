@@ -1,0 +1,22 @@
+{
+    "title": "Request message schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "clientId": {
+            "type": "string"
+        },
+        "subject": {
+            "type": "string"
+        },
+        "params": {
+            "type": "object"
+        },
+        "data": {
+            "type": "any"
+        }
+    },
+    "required": ["id", "clientId", "subject"]
+}

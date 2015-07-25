@@ -1,0 +1,25 @@
+{
+    "title": "Task message schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "requestId": {
+            "type": "string"
+        },
+        "createTime": {
+            "type": "string"
+        },
+        "status": {
+            "enum": ["active", "wait", "fail", "complete"]
+        },
+        "params": {
+            "type": "object"
+        },
+        "data": {
+            "type": "any"
+        }
+    },
+    "required": ["id", "requestId", "createTime", "status"]
+}
