@@ -1,6 +1,0 @@
-{
-  "requestId": "string",
-  "status": "enum[success|fail]",
-  "message": "string",
-  "data": "object"
-}

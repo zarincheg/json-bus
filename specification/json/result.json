@@ -1,5 +1,0 @@
-{
-  "taskId": "string",
-  "jobStatus": "enum[done|fail]",
-  "data": "object"
-}

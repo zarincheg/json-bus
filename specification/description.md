@@ -6,7 +6,8 @@ Protocol based on JSON format. Current version includes 4 objects which used in 
 
 #### Request
 
-This section describes request message which sends between clients and nodes(and between nodes, when node represents a client in a pipeline). JSON structure placed in [json/request.json](json/request.json)
+This section describes request message which sends between clients and nodes(and between nodes, when node represents a client in a pipeline).
+JSON structure placed in [src/MessagesSchema/request.json](../src/MessagesSchema/request.json)
 
 ##### The request object fields:
 - **id**<br>
@@ -26,7 +27,7 @@ Arbitrary data, which can be provided for node/workers
 
 #### Task
 Task object is created based on the client request and can be sent to the jobs queue for processing by workers. If data required from another node, the task will have "wait" status before those data will be received.
-JSON structure placed in [json/task.json](json/task.json)
+JSON structure placed in [src/MessagesSchema/task.json](../src/MessagesSchema/task.json)
 
 ##### The task object fields:
 
@@ -54,7 +55,7 @@ Arbitrary data, which can be provided for workers
 
 #### Notification
 Messages with this type will sent to the clients(through the notifications queue) as a response for their requests.
-JSON structure placed in [json/notification.json](json/notification.json)
+JSON structure placed in [src/MessagesSchema/notification.json](../src/MessagesSchema/notification.json)
 
 ##### The notification object fields:
 
@@ -74,7 +75,7 @@ Object with additional data
 
 #### Result
 Messages with this type describes result of worker's job
-JSON structure placed in [json/notification.json](json/result.json)
+JSON structure placed in [src/MessagesSchema/result.json](../src/MessagesSchema/result.json)
 
 ##### The result object fields:
 

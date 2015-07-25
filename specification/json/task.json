@@ -1,8 +1,0 @@
-{
-  "id": "string",
-  "requestId": "string",
-  "createTime": "string",
-  "status": "enum[active|wait|fail|complete]",
-  "params": "object",
-  "data": "object"
-}
