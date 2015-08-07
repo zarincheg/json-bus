@@ -11,6 +11,7 @@
 namespace Messages;
 
 use JsonSchema\Uri\UriRetriever;
+use JsonSchema\Validator;
 
 /**
  * Class Request
@@ -32,7 +33,7 @@ class BaseMessage implements Message
         $retriever = new UriRetriever;
         $schema = $retriever->retrieve('file://' . realpath($schema));
 
-        $validator = new \JsonSchema\Validator();
+        $validator = new Validator();
         $validator->check(json_decode($message), $schema);
 
         if ($validator->isValid()) {

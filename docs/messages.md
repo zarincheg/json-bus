@@ -1,6 +1,6 @@
 ## Data processing framework protocol description
 
-Protocol based on JSON format. Current version includes 4 objects which used in communication between framework services(nodes, workers, clients): Request, Result, Notification and Task. Message exchange occurs via the bus based on the RabbitMQ.
+Messaging based on JSON format. Current version includes 4 objects which used in communication between framework services(nodes, workers, clients): Request, Result, Notification and Task. Message exchange occurs via the bus based on the RabbitMQ.
 
 ### Messages description
 
