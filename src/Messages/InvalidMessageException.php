@@ -9,7 +9,7 @@
  * Time: 21:53
  */
 
-namespace Messages;
+namespace JsonBus\Messages;
 
 
 /**

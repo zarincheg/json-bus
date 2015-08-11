@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-use Messages\Task;
+use JsonBus\Messages\Task;
 
 /**
  * Created by Kirill Zorin <zarincheg@gmail.com>
@@ -13,7 +13,7 @@ use Messages\Task;
 class TaskMessageTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @expectedException \Messages\InvalidMessageException
+     * @expectedException \JsonBus\Messages\InvalidMessageException
      * @dataProvider invalidMessageProvider
      */
     public function testException($a)

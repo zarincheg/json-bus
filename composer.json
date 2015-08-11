@@ -10,13 +10,17 @@
         }
     ],
     "require": {
-        "justinrainbow/json-schema": "1.4.4"
+        "justinrainbow/json-schema": "1.4.4",
+        "videlalvaro/php-amqplib": "2.5.*",
+        "vlucas/phpdotenv": "2.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.7.*"
     },
     "autoload": {
-        "psr-4": {"Messages\\": "src/Messages"}
+        "psr-4": {
+            "JsonBus\\": "src/"
+        }
     },
     "autoload-dev": {
         "psr-4": {"Tests\\": "tests/"}

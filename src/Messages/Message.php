@@ -1,5 +1,5 @@
 <?php
-namespace Messages;
+namespace JsonBus\Messages;
 
 /**
  * Interface for messages which will be used in communication between system nodes, workers and clients

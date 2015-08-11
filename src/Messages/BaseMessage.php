@@ -8,7 +8,7 @@
  * Date: 24.07.15
  * Time: 19:39
  */
-namespace Messages;
+namespace JsonBus\Messages;
 
 use JsonSchema\Uri\UriRetriever;
 use JsonSchema\Validator;

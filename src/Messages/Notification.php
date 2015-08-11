@@ -7,14 +7,14 @@
  * Time: 16:59
  */
 
-namespace Messages;
+namespace JsonBus\Messages;
 
 
 /**
  * Class Request
  * @package Messages
  */
-class Notification extends BaseMessage
+class Notification extends JsonBusMessage
 {
     protected $schema = 'notification';
 }

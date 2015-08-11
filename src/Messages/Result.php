@@ -7,14 +7,14 @@
  * Time: 16:59
  */
 
-namespace Messages;
+namespace JsonBus\Messages;
 
 
 /**
  * Class Request
  * @package Messages
  */
-class Result extends BaseMessage
+class Result extends JsonBusMessage
 {
     protected $schema = 'result';
 }
