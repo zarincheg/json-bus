@@ -82,6 +82,7 @@ class RequestMessageTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [[
+                "type" => "request",
                 "id" => "req123",
                 "clientId" => "clientBob1",
                 "subject" => "TestMe",
@@ -89,6 +90,7 @@ class RequestMessageTest extends \PHPUnit_Framework_TestCase
                 "data" => []
             ]],
             [[
+                "type" => "request",
                 "id" => "req123",
                 "clientId" => "clientBob1",
                 "subject" => "TestMe",

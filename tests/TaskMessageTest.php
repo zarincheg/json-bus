@@ -96,18 +96,21 @@ class TaskMessageTest extends \PHPUnit_Framework_TestCase
         $time = date('d-m-Y H:i:s');
         return [
             [[
+                "type" => "task",
                 "id" => "req123",
                 "requestId" => "clientBob1",
                 "createTime" => $time,
                 "status" => 'active'
             ]],
             [[
+                "type" => "task",
                 "id" => "req123",
                 "requestId" => "clientBob1",
                 "createTime" => $time,
                 "status" => 'active'
             ]],
             [[
+                "type" => "task",
                 "id" => "req123",
                 "requestId" => "clientBob1",
                 "createTime" => $time,

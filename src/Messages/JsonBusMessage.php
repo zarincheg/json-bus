@@ -19,6 +19,26 @@ use PhpAmqpLib\Message\AMQPMessage;
 class JsonBusMessage extends BaseMessage
 {
     /**
+     * @var string Publisher key(tag). It is used as a delivery key for AMQP messages
+     *             and also possible for the message sender identification
+     */
+    protected $publisher = '';
+    protected $deliveryTag = null;
+
+    /**
+     * @param array $message
+     * @throws InvalidMessageException
+     */
+    public function __construct(array $message)
+    {
+        if (!isset($message['type']) || $message['type'] !== $this->schema) {
+            $message['type'] = $this->schema;
+        }
+
+        parent::__construct($message);
+    }
+
+    /**
      * Convert message to AMQP format
      * @return AMQPMessage
      */

@@ -11,6 +11,7 @@ namespace JsonBus\Tests;
 
 
 use Dotenv\Dotenv;
+use JsonBus\JsonBus;
 use JsonBus\RabbitQueue;
 use JsonBus\Messages\Request;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -25,6 +26,8 @@ class RabbitQueueTest extends \PHPUnit_Framework_TestCase
     {
         $dotenv = new Dotenv(dirname(__DIR__));
         $dotenv->load();
+
+        JsonBus::register('request', '\Messages\Request');
 
         $message = new Request([
             "id" => "1",
@@ -46,6 +49,15 @@ class RabbitQueueTest extends \PHPUnit_Framework_TestCase
         $result = $queue->get(true);
         $queue->close();
 
-        $this->assertJson($result);
+        $this->assertInstanceOf('\JsonBus\Messages\JsonBusMessage', $result);
+        $this->assertEquals([
+            "type" => "request",
+            "id" => "1",
+            "clientId" => "php-unit",
+            "subject" => "just second test",
+            "params" => [
+                "case" => "push-get"
+            ]
+        ], $result->toArray());
     }
 }

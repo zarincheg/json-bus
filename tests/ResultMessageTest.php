@@ -82,14 +82,17 @@ class ResultMessageTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [[
+                "type" => "result",
                 "taskId" => "task123",
                 "jobStatus" => "done"
             ]],
             [[
+                "type" => "result",
                 "taskId" => "task345",
                 "jobStatus" => "fail"
             ]],
             [[
+                "type" => "result",
                 "taskId" => "task678",
                 "jobStatus" => "done",
                 "data" => []

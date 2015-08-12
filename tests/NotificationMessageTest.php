@@ -90,16 +90,19 @@ class NotificationMessageTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [[
+                "type" => "notification",
                 "requestId" => "request1",
                 "status" => 'success',
                 "message" => "Test message of notification"
             ]],
             [[
+                "type" => "notification",
                 "requestId" => "request2",
                 "status" => 'fail',
                 "message" => "Test message of notification"
             ]],
             [[
+                "type" => "notification",
                 "requestId" => "request3",
                 "status" => 'fail',
                 "message" => "Test message of notification",

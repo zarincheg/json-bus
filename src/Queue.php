@@ -26,7 +26,13 @@ interface Queue
      * @return Message
      */
     public function get($acknowledge = false);
-    public function ack();
+
+    /**
+     * Acknowledge message
+     * @param JsonBusMessage $message
+     * @return mixed
+     */
+    public function ack(JsonBusMessage $message);
 
     /**
      * @param array $messages Bunch of messages objects

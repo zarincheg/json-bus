@@ -44,14 +44,20 @@ class RabbitQueue implements Queue
      * @param AMQPStreamConnection $amqpConnection
      * @param string $queue Queue name
      * @param string $exchange Exchange name
+     * @param null $key Routing key
      */
-    public function __construct(AMQPStreamConnection $amqpConnection, $queue, $exchange = 'jsonbus')
+    public function __construct(AMQPStreamConnection $amqpConnection, $queue, $exchange = 'jsonbus', $key = null)
     {
         $this->connection = $amqpConnection;
         $this->channel = $this->connection->channel();
         $this->channel->exchange_declare($exchange, 'direct', false, true);
         $this->channel->queue_declare($queue, false, true);
-        $this->channel->queue_bind($queue, $exchange, $queue);
+
+        if (!$key) {
+            $key = $queue;
+        }
+
+        $this->channel->queue_bind($queue, $exchange, $key);
 
         $this->exchange = $exchange;
         $this->queue = $queue;
@@ -59,11 +65,16 @@ class RabbitQueue implements Queue
 
     /**
      * @param \JsonBus\Messages\JsonBusMessage $message
+     * @param null $key Routing key
      * @return mixed|void
      */
-    public function push(JsonBusMessage $message)
+    public function push(JsonBusMessage $message, $key = null)
     {
-        $this->channel->basic_publish($message->toAMQP(), $this->exchange, $this->queue);
+        if (!$key) {
+            $key = $this->queue;
+        }
+
+        $this->channel->basic_publish($message->toAMQP(), $this->exchange, $key);
     }
 
     /**
@@ -77,28 +88,31 @@ class RabbitQueue implements Queue
 
     /**
      * @param bool|false $acknowledge Auto acknowledgement flag
-     * @return string
+     * @return JsonBusMessage
      */
     public function get($acknowledge = false)
     {
         $message = $this->channel->basic_get($this->queue, $acknowledge);
 
-        // @todo Makes return JsonBus message object.
-        return $message->body;
-    }
-
-    public function ack()
-    {
-        //$this->channel->basic_ack()
+        return JsonBus::make($message->body);
     }
 
     /**
      * @param array $messages Bunch of messages objects
      * @return mixed
+     * @throws \Exception
      */
     public function pushBatch(array $messages)
     {
-        // TODO: Implement pushBatch() method.
+        foreach ($messages as $message) {
+            if (!($message instanceof JsonBusMessage)) {
+                throw new \Exception("Each message must be instance of JsonBusMessage");
+            }
+
+            $this->channel->batch_basic_publish($message->toAMQP(), $this->exchange, $this->queue);
+        }
+
+        $this->channel->publish_batch();
     }
 
     /**
@@ -107,6 +121,16 @@ class RabbitQueue implements Queue
     public function getBatch()
     {
         // TODO: Implement getBatch() method.
+    }
+
+    /**
+     * Acknowledge message
+     * @param JsonBusMessage $message
+     * @return void
+     */
+    public function ack(JsonBusMessage $message)
+    {
+        $this->channel->basic_ack($message->deliveryTag);
     }
 
     /**

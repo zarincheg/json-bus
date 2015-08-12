@@ -19,7 +19,8 @@ use JsonSchema\Validator;
  */
 class BaseMessage implements Message
 {
-    private $message = null;
+    protected $schema;
+    protected $message = null;
 
     /**
      * @param array $message
@@ -29,6 +30,11 @@ class BaseMessage implements Message
     {
         $schema = dirname(__DIR__) . '/MessagesSchema/' . $this->schema . '.json';
         $errors = '';
+
+        if (!isset($message['type']) || $message['type'] !== $this->schema) {
+            throw new InvalidMessageException('Message type is invalid. It must be set and equal to json-schema name');
+        }
+
         $message = json_encode($message, JSON_FORCE_OBJECT);
         $retriever = new UriRetriever;
         $schema = $retriever->retrieve('file://' . realpath($schema));
