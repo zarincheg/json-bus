@@ -1,6 +1,6 @@
 {
-    "name": "zarincheg/pipeline-protocol",
-    "description": "Data Processing Framework protocol implementation",
+    "name": "zarincheg/json-bus",
+    "description": "Message bus based on JSON and RabbitMQ",
     "minimum-stability": "dev",
     "license": "GPL-2.0",
     "authors": [
