@@ -87,7 +87,7 @@ class RabbitQueueTest extends \PHPUnit_Framework_TestCase
         $queue->push($message);
 
         $queue->registerCallback(function ($message) use ($queue) {
-            $message = JsonBus::make($message->body);
+            $message = JsonBus::make($message);
             file_put_contents('test.json', $message->toJson());
             $queue->clearCallbacks('test');
         }, 'test');

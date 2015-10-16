@@ -84,7 +84,17 @@ class RabbitQueue implements Queue
      */
     public function registerCallback(callable $callback, $tag = '')
     {
-        $this->channel->basic_consume($this->queue, $tag, false, true, false, false, $callback);
+        $this->channel->basic_consume(
+            $this->queue,
+            $tag,
+            false,
+            true,
+            false,
+            false,
+            function ($message) use ($callback) {
+                $callback($message->body);
+            }
+        );
     }
 
     /**
