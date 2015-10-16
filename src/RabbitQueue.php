@@ -79,11 +79,32 @@ class RabbitQueue implements Queue
 
     /**
      * Callback for handle received messages
-     * @param AMQPMessage $message
+     * @param callable $callback
+     * @param string $tag
      */
-    public function consumeCallback(AMQPMessage $message)
+    public function registerCallback(callable $callback, $tag = '')
     {
-        $this->lastReceivedMessage = $message;
+        $this->channel->basic_consume($this->queue, $tag, false, true, false, false, $callback);
+    }
+
+    /**
+     * @param string $tag Consumer tag
+     */
+    public function clearCallbacks($tag = '')
+    {
+        $this->channel->basic_cancel($tag);
+    }
+
+    /**
+     * @return bool
+     */
+    public function process()
+    {
+        while (count($this->channel->callbacks)) {
+            $this->channel->wait();
+        }
+
+        return true;
     }
 
     /**
