@@ -46,8 +46,7 @@ class ResultMessageTest extends \PHPUnit_Framework_TestCase
     public function testGet($a)
     {
         $m = new Result($a);
-        $this->assertEquals($a['taskId'], $m->taskId);
-        $this->assertEquals($a['jobStatus'], $m->jobStatus);
+        $this->assertEquals($a['job'], $m->job);
 
         if (isset($a['data'])) {
             $this->assertEquals($a['data'], $m->data);
@@ -80,21 +79,38 @@ class ResultMessageTest extends \PHPUnit_Framework_TestCase
      */
     public function validMessageProvider()
     {
+        $time = date('d-m-Y H:i:s');
         return [
             [[
                 "type" => "result",
-                "taskId" => "task123",
-                "jobStatus" => "done"
+                "job" => [
+                    "id" => "req123",
+                    "taskId" => "clientBob1",
+                    "createTime" => $time,
+                    "status" => 'success'
+                ]
             ]],
             [[
                 "type" => "result",
-                "taskId" => "task345",
-                "jobStatus" => "fail"
+                "job" => [
+                    "type" => "job",
+                    "id" => "req123",
+                    "taskId" => "clientBob1",
+                    "createTime" => $time,
+                    "status" => 'fail'
+                ]
             ]],
             [[
                 "type" => "result",
-                "taskId" => "task678",
-                "jobStatus" => "done",
+                "job" => [
+                    "type" => "job",
+                    "id" => "req123",
+                    "taskId" => "clientBob1",
+                    "createTime" => $time,
+                    "status" => 'success',
+                    "params" => ['test' => 1],
+                    "data" => ['test' => []]
+                ],
                 "data" => []
             ]]
         ];

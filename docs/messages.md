@@ -70,6 +70,7 @@ Time when job was created
 
 - **status**<br>
 Job status can be:<br>
+*new* - Job is ready for process
 *success* - Job has been processed by worker successfully<br>
 *fail* - Job failed<br>
 
@@ -105,13 +106,8 @@ JSON structure placed in [src/MessagesSchema/result.json](../src/MessagesSchema/
 
 ##### The result object fields:
 
-- **taskId**<br>
-ID of the handled task
-
-- **jobStatus**<br>
-Status of worker's job:
-*done* - Task was completed correctly
-*fail* - Task failed
+- **job**<br>
+Job(Job message object) which has been executed. With changed status.
 
 - **data**<br>
-Additional data
+Result data

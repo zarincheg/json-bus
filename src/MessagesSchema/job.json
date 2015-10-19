@@ -12,7 +12,7 @@
             "type": "string"
         },
         "status": {
-            "enum": ["success", "fail"]
+            "enum": ["new", "success", "fail"]
         },
         "params": {
             "type": "object"

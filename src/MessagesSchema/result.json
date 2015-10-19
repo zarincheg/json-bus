@@ -2,15 +2,33 @@
     "title": "Result message schema",
     "type": "object",
     "properties": {
-        "taskId": {
-            "type": "string"
-        },
-        "jobStatus": {
-            "enum": ["done", "fail"]
+        "job": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "taskId": {
+                    "type": "string"
+                },
+                "createTime": {
+                    "type": "string"
+                },
+                "status": {
+                    "enum": ["new", "success", "fail"]
+                },
+                "params": {
+                    "type": "object"
+                },
+                "data": {
+                    "type": "any"
+                }
+            },
+            "required": ["id", "taskId", "createTime", "status"]
         },
         "data": {
             "type": "any"
         }
     },
-    "required": ["taskId", "jobStatus"]
+    "required": ["job"]
 }
