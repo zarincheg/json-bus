@@ -53,6 +53,32 @@ Task parameters, which needed for perform the task
 - **data**<br>
 Arbitrary data, which can be provided for workers
 
+#### Job
+Job object is created based on the task and can be sent to the jobs queue for processing by workers. If job will failed by any reason it can be pushed in the queue for new attempt of execution.
+JSON structure placed in [src/MessagesSchema/job.json](../src/MessagesSchema/job.json)
+
+##### The job object fields:
+
+- **id**<br>
+Job ID
+
+- **taskId**<br>
+Task ID for bind job with task
+
+- **createTime**<br>
+Time when job was created
+
+- **status**<br>
+Job status can be:<br>
+*success* - Job has been processed by worker successfully<br>
+*fail* - Job failed<br>
+
+- **params**<br>
+Job parameters. Not required.
+
+- **data**<br>
+Arbitrary data, which can be provided for workers. Not required.
+
 #### Notification
 Messages with this type will sent to the clients(through the notifications queue) as a response for their requests.
 JSON structure placed in [src/MessagesSchema/notification.json](../src/MessagesSchema/notification.json)

@@ -1,0 +1,25 @@
+{
+    "title": "Job message schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string"
+        },
+        "taskId": {
+            "type": "string"
+        },
+        "createTime": {
+            "type": "string"
+        },
+        "status": {
+            "enum": ["success", "fail"]
+        },
+        "params": {
+            "type": "object"
+        },
+        "data": {
+            "type": "any"
+        }
+    },
+    "required": ["id", "taskId", "createTime", "status"]
+}
